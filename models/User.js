@@ -18,7 +18,7 @@ var UserSchema = new Schema({
   },
   resetPasswordToken: String,
   resetPasswordExpires: Date
-})
+});
 
 UserSchema.pre('save', function (next) {
   var user = this
