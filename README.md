@@ -19,8 +19,6 @@ Open another terminal `npm run-script build` to run the app locally on "localhos
 
 ## Note
 
-To add new user access "http://localhost:3000/register"
-
 the `src` folder contains code for Frontend (ReactJS) (`node_modules` and `public` are part of React App)
 
 `app.js` file, `bin` and `routes` folder contain code for Backend (Mongo database and Express routing)  
