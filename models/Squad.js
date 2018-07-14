@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 var SquadSchema = new Schema({
-    icon: String,
+    icon: String, // Link
     bio: String,
     members: [{
         type: Schema.Types.ObjectId,
@@ -11,7 +11,8 @@ var SquadSchema = new Schema({
     privacy: {
         host: {
             type: Schema.Types.ObjectId,
-            ref: 'User'
+            ref: 'User',
+            required: false,
         },
         public: Boolean,
         // 1: Manually accept request
@@ -20,6 +21,8 @@ var SquadSchema = new Schema({
         requestSetting: Number,
         PIN: String // Use this if requestSetting === 2
     },
+
+    // NOTIFICATION
     // Squad-Notification may be One-to-Squillions,
     // Therefore, Squad Notifications is a separate Collection
     // SqNoti.js
@@ -33,6 +36,7 @@ var SquadSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'SqSchedule'
     }],
+
     expense: [{
         type: Schema.Types.ObjectId,
         ref: 'SqExpense'

@@ -15,10 +15,11 @@ const moment = require('moment')
 // routers to authenticate user
 router.get('/', passport.authenticate('jwt', { session: false}), function (req, res) {
   var token = getToken(req.headers)
+  console.log(JSON.stringify(token, undefined, 2));
   if (token) {
     return res.json({success: true, msg: 'Authorized.'})
   } else {
-    return res.status(403).json({success: false, msg: 'Unauthorized.'})
+    return res.status(401).json({success: false, msg: 'Unauthorized.'})
   }
 })
 getToken = (headers) => {
@@ -66,6 +67,12 @@ router.post('/login', function (req, res) {
       user.comparePassword(req.body.password, function (err, isMatch) {
         if (isMatch && !err) {
           // if user is found and password is right create a token
+          // New object to sign
+          // var signUser = {
+          //   email: ,
+          //   ObjectID: ,
+          // }
+
           var token = jwt.sign(user.toJSON(), settings.secret)
           // return the information including token as JSON
           res.json({success: true, token: 'JWT ' + token})
